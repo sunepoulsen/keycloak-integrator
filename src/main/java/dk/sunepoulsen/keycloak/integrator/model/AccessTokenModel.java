@@ -15,6 +15,6 @@ public class AccessTokenModel implements BaseModel {
     private String refreshToken;
     private String scope;
     private String sessionState;
-    private String token;
+    private String accessToken;
     private String tokenType;
 }
