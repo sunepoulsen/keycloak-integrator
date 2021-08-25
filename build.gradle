@@ -1,0 +1,41 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'dk.sunepoulsen.timelog'
+version "${project.property('keycloak-integrator.version')}"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+task allWrappers(type: Wrapper) {
+    gradleVersion = "${project.property('gradle.version')}"
+}
+
+dependencies {
+    // Lombok
+    compileOnly "org.projectlombok:lombok:${project.property('lombok.version')}"
+    annotationProcessor "org.projectlombok:lombok:${project.property('lombok.version')}"
+
+    // Tech Easy Solutions
+    implementation "dk.sunepoulsen.tech-easy-solutions:tes-spring-boot-client-core:${project.property('tes-spring-boot-client-core.version')}"
+    testImplementation "dk.sunepoulsen.tech-easy-solutions:tes-spring-boot-component-tests-core:${project.property('tes-spring-boot-component-tests.version')}"
+
+    // Logging
+    implementation "ch.qos.logback:logback-classic:${project.property('logback.version')}"
+    implementation "org.slf4j:log4j-over-slf4j:${project.property('log4j-over-slf4j.version')}"
+
+    // JUnit
+    testImplementation "junit:junit:${project.property('junit.version')}"
+
+    // Spock
+    testImplementation "org.spockframework:spock-core:${project.property('spock-core.version')}"
+    testImplementation "cglib:cglib-nodep:${project.property('cglib-nodep.version')}"
+    testImplementation "org.objenesis:objenesis:${project.property('objenesis.version')}"
+}
